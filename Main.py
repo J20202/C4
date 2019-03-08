@@ -7,9 +7,10 @@ screen = pygame.display.set_mode((800, 600))
 done = False
 
 # Game Variables
-
-# Mouse Variables
-
+# 1 = Red | 2 = Yellow
+turn = 1
+#time
+time = 0
 
 # Board
 # 0 = Empty, 1 = red, 2 = yellow
@@ -42,6 +43,7 @@ def drawGame():
 
 def drawHitBox():
     global mPos
+    global turn
 
     mPos = pygame.mouse.get_pos()
     if pygame.mouse.get_pressed()[0]:
@@ -49,9 +51,17 @@ def drawHitBox():
             for i in range(0, len(board[a]), 1):
                 hitBox = pygame.Rect(75 + 100 * i, 75 + 75 * a, 50, 50)
                 if hitBox.collidepoint(mPos):
-                    board[a][i] = 1
+                    board[a][i] = turn
 
-def change
+def changeTurn():
+    #WHAT TO DO - had a time variable to reduce spam color changes
+    global turn
+
+    if turn == 1: #RED
+        turn = 2
+    else:
+        turn = 1
+
 
 
 
@@ -64,5 +74,6 @@ while not done:
 
     drawGame()
     drawHitBox()
+    changeTurn()
 
     pygame.display.flip()
